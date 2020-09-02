@@ -40,8 +40,10 @@ const RootSlidingNavigator = () => {
       <Screen
         name='Temperatures'
         renderIcon={<TempIcon />}
+        iconStyle={{ elevation: 25 }}
         iconContainerStyle={styles.iconContainer}
         renderHighlighted={<TempIcon highlighted />}
+        label='Temperature'
       >
         <TemperatureScreen />
       </Screen>
@@ -50,6 +52,8 @@ const RootSlidingNavigator = () => {
         renderIcon={<ProfileIcon />}
         renderHighlighted={<ProfileIcon highlighted />}
         iconContainerStyle={styles.iconContainer}
+        label='Your Data'
+        labelStyle={{ color: '#555' }}
       >
         <ProfileScreen />
       </Screen>
@@ -59,11 +63,19 @@ const RootSlidingNavigator = () => {
 
 const styles = StyleSheet.create({
   iconContainer: {
-    flex: 1,
     alignItems: 'center',
+    width: 100,
   },
   tabStyle: {
-    elevation: 10,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.43,
+    shadowRadius: 9.51,
+    elevation: 15,
+    justifyContent: 'space-evenly',
   },
 });
 

@@ -8,9 +8,9 @@ const ProfileScreen = () => {
   return (
     <LinearGradient
       style={styles.wall}
-      start={{ x: 0.5, y: -0.4 }}
-      end={{ x: 0.5, y: 1.4 }}
-      colors={wallGradients.JShine}
+      start={{ x: 0.5, y: 0 }}
+      end={{ x: 0.5, y: 1 }}
+      colors={wallGradients.Cloudy}
     >
       <View style={styles.container}>
         <Text h4 style={styles.title}>
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   title: {
-    color: '#FFF',
+    color: '#444',
     margin: 10,
   },
 });

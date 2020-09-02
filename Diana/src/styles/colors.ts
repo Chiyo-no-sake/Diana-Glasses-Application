@@ -1,3 +1,3 @@
 export const colors = {
-  MAIN: '#12c2e9',
+  MAIN: 'rgba(41,226,139,1)',
 };
