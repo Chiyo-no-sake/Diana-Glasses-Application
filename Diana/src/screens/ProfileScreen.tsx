@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { wallGradients } from '../styles/gradients';
+import theme from '../styles/theme';
 import { Text } from 'react-native-elements';
 
 const ProfileScreen = () => {
@@ -10,7 +10,7 @@ const ProfileScreen = () => {
       style={styles.wall}
       start={{ x: 0.5, y: 0 }}
       end={{ x: 0.5, y: 1 }}
-      colors={wallGradients.Cloudy}
+      colors={theme.app.screenBackgroundGradient}
     >
       <View style={styles.container}>
         <Text h4 style={styles.title}>

@@ -88,7 +88,6 @@ const SlidingTabIcon = (props: Props) => {
       onPress={() => {
         props.onPress();
       }}
-      onBlur={() => unfocusAnim()}
     >
       <Animated.View
         style={[

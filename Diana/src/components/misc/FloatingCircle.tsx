@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, StyleProp, ViewStyle } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { wallGradients } from '../../styles/gradients';
+import theme from '../../styles/theme';
 
 type Props = {
   children?: React.ReactNode;
@@ -11,7 +11,7 @@ type Props = {
 const FloatingCircle = (props: Props) => {
   return (
     <LinearGradient
-      colors={wallGradients.GreenAzure}
+      colors={theme.app.mainGradient}
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 1 }}
       style={[styles.plusBtn, props.style]}
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     elevation: 8,
     margin: 10,
     alignSelf: 'center',
-    borderColor: '#FFF',
+    borderColor: theme.app.plusIconColor,
     borderWidth: 3,
     justifyContent: 'center',
     alignItems: 'center',

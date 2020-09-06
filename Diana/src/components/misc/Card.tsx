@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { MutableRefObject, RefObject } from 'react';
 import { StyleSheet, View, StyleProp, ViewStyle } from 'react-native';
 
 type Props = {
   children?: React.ReactNode;
   style?: StyleProp<ViewStyle>;
+  ref?: RefObject<View>;
 };
 
-const Card = ({ children, style }: Props) => {
-  return <View style={[styles.card, style]}>{children}</View>;
+const Card = ({ children, style, ref }: Props) => {
+  return (
+    <View style={[styles.card, style]} ref={ref}>
+      {children}
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({

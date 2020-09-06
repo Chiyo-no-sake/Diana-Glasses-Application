@@ -1,40 +1,30 @@
-import React, {
-  Children,
-  ReactChild,
-  Ref,
-  createRef,
-  ReactComponentElement,
-  ReactElement,
-  useRef,
-} from 'react';
+import React, { createRef, ReactElement } from 'react';
 import {
-  Text,
   View,
   StyleSheet,
   ScrollView,
   Dimensions,
-  NativeScrollEvent,
-  NativeSyntheticEvent,
   StyleProp,
-  ImageStyle,
   ViewStyle,
-  Animated,
   TextStyle,
 } from 'react-native';
 
-import SlidingTabIcon from './SlidingTabIcon';
-import { Icon } from 'react-native-vector-icons/Icon';
+import withGradient from '../../HOC/withGradient';
+import TabBar from './SlidingTabBar';
+import theme from '../../styles/theme';
 
 export type State = {
   highlightedIndex: number;
-  suspendMonitor: boolean;
 };
 
 export type Props = {
-  children?: React.ReactNode;
+  children?:
+    | React.ReactElement<ScreenProps>
+    | React.ReactElement<ScreenProps>[];
   initialRouteName?: string;
   scrollable?: boolean;
   tabStyle?: StyleProp<ViewStyle>;
+  withGradient?: boolean;
 };
 
 export type ScreenProps = {
@@ -74,20 +64,29 @@ export class Screen extends React.Component<ScreenProps> {
 export default class SlidingTabNavigator extends React.Component<Props, State> {
   scrollView = createRef<ScrollView>();
   screenMap: { name: string; index: number }[] = [];
-
-  suspendedMonitoringTimeout = 500;
+  suspendHighligh = false;
+  suspendTimeout = 300;
 
   static defaultProps = {
     scrollable: false,
+    withGradient: false,
   };
 
   constructor(props: Props) {
     super(props);
 
-    this.state = { highlightedIndex: 0, suspendMonitor: false };
+    this.state = { highlightedIndex: 0 };
 
     // set screen name-index map
     this.initNameIndexMap(props);
+  }
+
+  suspendHighlight() {
+    this.suspendHighligh = true;
+  }
+
+  resumeHighlight() {
+    this.suspendHighligh = false;
   }
 
   initNameIndexMap(props: Props) {
@@ -96,14 +95,14 @@ export default class SlidingTabNavigator extends React.Component<Props, State> {
         for (let i = 0; i < props.children.length; i++) {
           if (props.children[i])
             this.screenMap.push({
-              name: (props.children[i] as React.Component<ScreenProps>).props
-                .name,
+              name: props.children[i].props.name,
               index: i,
             });
         }
       } else {
         this.screenMap.push({
-          name: (props.children as React.Component<ScreenProps>).props.name,
+          name: ((props.children as unknown) as React.Component<ScreenProps>)
+            .props.name,
           index: 0,
         });
       }
@@ -119,8 +118,9 @@ export default class SlidingTabNavigator extends React.Component<Props, State> {
           ? this.props.initialRouteName
           : (this.props.children[0] as React.Component<ScreenProps>).props.name;
     } else if (this.props.children) {
-      initialRouteName = (this.props.children as React.Component<ScreenProps>)
-        .props.name;
+      initialRouteName = ((this.props.children as unknown) as React.Component<
+        ScreenProps
+      >).props.name;
     }
 
     if (initialRouteName) this.setCurrentScreen(initialRouteName);
@@ -188,6 +188,13 @@ export default class SlidingTabNavigator extends React.Component<Props, State> {
     }
   }
 
+  Tab = this.props.withGradient
+    ? withGradient(TabBar, {
+        colors: theme.app.mainGradient,
+        style: styles.tab,
+      })
+    : TabBar;
+
   render() {
     return (
       <View style={styles.container}>
@@ -200,103 +207,35 @@ export default class SlidingTabNavigator extends React.Component<Props, State> {
             pagingEnabled={true}
             ref={this.scrollView}
             scrollEnabled={this.props.scrollable}
-            onScroll={
-              this.props.scrollable && !this.state.suspendMonitor
-                ? (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-                    const nearestName = this.getNearestRouteIndexOnScroll(
-                      event.nativeEvent.contentOffset.x
-                    );
-                    const nearestIndex = this.getIndex(nearestName);
-                    this.setState({
-                      ...this.state,
-                      highlightedIndex: nearestIndex,
-                    });
-                  }
-                : () => {}
-            }
+            scrollEventThrottle={100}
+            onScroll={(event) => {
+              if (!this.suspendHighligh) {
+                const nearestName = this.getNearestRouteIndexOnScroll(
+                  event.nativeEvent.contentOffset.x
+                );
+                const nearestIndex = this.getIndex(nearestName);
+                this.setState({
+                  ...this.state,
+                  highlightedIndex: nearestIndex,
+                });
+              }
+            }}
           >
             {this.props.children}
           </ScrollView>
         </View>
-        <View style={[styles.tab, this.props.tabStyle]}>
-          {this.props.children ? (
-            Array.isArray(this.props.children) ? (
-              React.Children.map(
-                this.props.children as ReactElement<ScreenProps>[],
-                ({ props }: React.ReactElement<ScreenProps>) => (
-                  <SlidingTabIcon
-                    item={props.renderIcon}
-                    iconStyle={props.iconStyle}
-                    iconContainerStyle={props.iconContainerStyle}
-                    iconHighlightedStyle={props.iconHighlightedStyle}
-                    onPress={() => {
-                      this.setState({ ...this.state, suspendMonitor: true });
-                      this.navigate(props.name);
-                      setTimeout(
-                        () =>
-                          this.setState({
-                            ...this.state,
-                            suspendMonitor: false,
-                          }),
-                        this.suspendedMonitoringTimeout
-                      );
-                    }}
-                    isHighlighted={
-                      this.state.highlightedIndex === this.getIndex(props.name)
-                    }
-                    renderHighlighted={props.renderHighlighted}
-                    label={props.label}
-                    labelStyle={props.labelStyle}
-                  ></SlidingTabIcon>
-                )
-              )
-            ) : (
-              <SlidingTabIcon
-                item={
-                  (this.props.children as React.Component<ScreenProps>).props
-                    .renderIcon
-                }
-                iconStyle={
-                  (this.props.children as React.Component<ScreenProps>).props
-                    .iconStyle
-                }
-                iconContainerStyle={
-                  (this.props.children as React.Component<ScreenProps>).props
-                    .iconContainerStyle
-                }
-                iconHighlightedStyle={
-                  (this.props.children as React.Component<ScreenProps>).props
-                    .iconHighlightedStyle
-                }
-                onPress={() =>
-                  this.navigate(
-                    (this.props.children as React.Component<ScreenProps>).props
-                      .name
-                  )
-                }
-                isHighlighted={
-                  this.state.highlightedIndex ===
-                  this.getIndex(
-                    (this.props.children as React.Component<ScreenProps>).props
-                      .name
-                  )
-                }
-                label={
-                  (this.props.children as React.Component<ScreenProps>).props
-                    .label
-                }
-                labelStyle={
-                  (this.props.children as React.Component<ScreenProps>).props
-                    .labelStyle
-                }
-                renderHighlighted={
-                  (this.props.children as React.Component<ScreenProps>).props
-                    .renderHighlighted
-                }
-              />
-            )
-          ) : null}
-        </View>
+        <this.Tab
+          onPressIcon={(screenName) => {
+            this.suspendHighlight();
+            this.navigate(screenName);
+            setTimeout(() => this.resumeHighlight(), this.suspendTimeout);
+          }}
+          isHighlightedConstraint={(screenName) =>
+            this.state.highlightedIndex === this.getIndex(screenName)
+          }
+          screens={this.props.children as any}
+          style={[styles.tab, this.props.tabStyle]}
+        />
       </View>
     );
   }
@@ -313,7 +252,6 @@ const styles = StyleSheet.create({
     height: 50,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#FFF',
     justifyContent: 'space-evenly',
   },
   screen: {

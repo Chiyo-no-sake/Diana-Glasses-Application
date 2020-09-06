@@ -1,32 +1,28 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { Fontisto } from '@expo/vector-icons';
+import theme from '../styles/theme';
 
 import SlidingTabNavigator, {
   Screen,
-} from '../components/SlidingTabNav/SlidingTabNavigator';
+} from '../components/slidingTabNavigator/SlidingTabNavigator';
 import ProfileScreen from '../screens/ProfileScreen';
 import TemperatureScreen from '../screens/TemperaturesScreen';
-import { colors } from '../styles/colors';
 
 type IconProps = {
   highlighted?: boolean;
 };
 
 const TempIcon = ({ highlighted }: IconProps) => (
-  <FontAwesome
-    name='thermometer-3'
-    size={24}
-    color={highlighted ? colors.MAIN : 'black'}
-  />
+  <FontAwesome name='thermometer-3' size={24} color={theme.app.tabIconsColor} />
 );
 
 const ProfileIcon = ({ highlighted }: IconProps) => (
   <Fontisto
     name='person'
-    size={24}
-    color={highlighted ? colors.MAIN : 'black'}
+    size={23}
+    color={theme.app.tabIconsColor} //{highlighted ? colors.LIGHTBLUE : colors.LIGHTGREY}
   />
 );
 
@@ -36,6 +32,7 @@ const RootSlidingNavigator = () => {
       scrollable
       initialRouteName='Temperatures'
       tabStyle={styles.tabStyle}
+      withGradient
     >
       <Screen
         name='Temperatures'
@@ -44,6 +41,7 @@ const RootSlidingNavigator = () => {
         iconContainerStyle={styles.iconContainer}
         renderHighlighted={<TempIcon highlighted />}
         label='Temperature'
+        labelStyle={{ color: theme.app.tabTextColor }}
       >
         <TemperatureScreen />
       </Screen>
@@ -53,7 +51,7 @@ const RootSlidingNavigator = () => {
         renderHighlighted={<ProfileIcon highlighted />}
         iconContainerStyle={styles.iconContainer}
         label='Your Data'
-        labelStyle={{ color: '#555' }}
+        labelStyle={{ color: theme.app.tabTextColor }}
       >
         <ProfileScreen />
       </Screen>
@@ -67,6 +65,9 @@ const styles = StyleSheet.create({
     width: 100,
   },
   tabStyle: {
+    justifyContent: 'center',
+  },
+  tabContainer: {
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -74,8 +75,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.43,
     shadowRadius: 9.51,
-    elevation: 15,
-    justifyContent: 'space-evenly',
+    elevation: 20,
   },
 });
 
