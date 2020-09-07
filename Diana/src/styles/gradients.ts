@@ -13,6 +13,7 @@ export default {
   EasyMed: ['#DCE35B', '#45B649'],
   Alive: ['#CB356B', '#BD3F32'],
   Firewatch: ['#cb2d3e', '#ef473a'],
+  FirewatchTransparent: ['rgba(203,45,62,0.2)', 'rgba(239,71,58,0.3)'],
   Passion: ['#e53935', '#e35d5b'],
   Shrimpy: ['#e43a15', '#e65245'],
   Cherry: ['#EB3349', '#F45C43'],

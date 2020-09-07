@@ -11,7 +11,7 @@ const getDateRange = (viewing: 'month' | 'week'): [Date, Date] => {
   let dataFrom: Date, dataTo: Date;
 
   if (viewing === 'week') {
-    dataFrom = new Date(today.getFullYear(), today.getMonth(), today.getDay());
+    dataFrom = new Date(today.getFullYear(), today.getMonth(), today.getDate());
     dataFrom.setHours(12);
     while (dataFrom.getDay() != 1) {
       dataFrom.setDate(dataFrom.getDate() - 1);

@@ -1,0 +1,112 @@
+{
+  "name": "@bit/bit.envs.compilers.react-native",
+  "version": "1.0.21",
+  "homepage": "https://bit.dev/bit/envs/compilers/react-native",
+  "main": "dist/react-native/index.js",
+  "componentId": {
+    "scope": "bit.envs",
+    "name": "compilers/react-native",
+    "version": "1.0.21"
+  },
+  "dependencies": {
+    "metro-react-native-babel-preset": "0.59.0",
+    "vinyl": "^2.2.0"
+  },
+  "devDependencies": {
+    "@types/vinyl": "^2.0.4",
+    "@types/chai": "^4.2.5",
+    "@types/mocha": "^7.0.2",
+    "@types/rimraf": "^2.0.3",
+    "bit-bin": "14.7.6",
+    "chai": "^4.2.0",
+    "mocha": "^8.0.1",
+    "rimraf": "^3.0.2"
+  },
+  "peerDependencies": {},
+  "license": "SEE LICENSE IN LICENSE",
+  "bit": {
+    "env": {
+      "compiler": {
+        "bit.envs/compilers/typescript@3.1.47": {
+          "rawConfig": {
+            "compilerPath": "typescript/bin/tsc",
+            "compilerArguments": [
+              "--declaration"
+            ],
+            "compiledFileTypes": [
+              ".ts",
+              ".tsx"
+            ],
+            "configFileName": "tsconfig.json",
+            "tsconfig": {
+              "compilerOptions": {
+                "outDir": "dist",
+                "target": "ES2015",
+                "sourceMap": false,
+                "moduleResolution": "Node",
+                "esModuleInterop": true,
+                "module": "CommonJS",
+                "allowSyntheticDefaultImports": true,
+                "resolveJsonModule": true,
+                "declaration": true,
+                "experimentalDecorators": true,
+                "inlineSourceMap": false,
+                "inlineSources": false,
+                "jsx": "react",
+                "rootDir": "./",
+                "removeComments": true,
+                "typeRoots": [
+                  "./node_modules/@types"
+                ],
+                "importHelpers": false,
+                "skipLibCheck": true
+              },
+              "include": [
+                "./**/*"
+              ],
+              "exclude": [
+                "node_modules",
+                "dist",
+                ".dependencies",
+                "*.spec.ts",
+                "*.e2e.ts"
+              ]
+            },
+            "development": false,
+            "copyPolicy": {
+              "ignorePatterns": [
+                "package.json",
+                "package-lock.json",
+                "tsconfig.json"
+              ],
+              "disable": false
+            }
+          },
+          "options": {}
+        }
+      }
+    },
+    "overrides": {
+      "dependencies": {
+        "@types/chai": "-",
+        "@types/mocha": "-",
+        "@types/rimraf": "-",
+        "@types/vinyl": "-",
+        "bit-bin": "-",
+        "chai": "-",
+        "mocha": "-",
+        "rimraf": "-"
+      },
+      "devDependencies": {
+        "@types/chai": "^4.2.5",
+        "@types/mocha": "^7.0.2",
+        "@types/rimraf": "^2.0.3",
+        "@types/vinyl": "^2.0.4",
+        "bit-bin": "14.7.6",
+        "chai": "^4.2.0",
+        "mocha": "^8.0.1",
+        "rimraf": "^3.0.2"
+      }
+    }
+  }
+}

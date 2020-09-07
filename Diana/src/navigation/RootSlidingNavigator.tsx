@@ -6,7 +6,7 @@ import theme from '../styles/theme';
 
 import SlidingTabNavigator, {
   Screen,
-} from '../components/slidingTabNavigator/SlidingTabNavigator';
+} from '../components/slidingTabNavigator/index';
 import ProfileScreen from '../screens/ProfileScreen';
 import TemperatureScreen from '../screens/TemperaturesScreen';
 
@@ -33,6 +33,7 @@ const RootSlidingNavigator = () => {
       initialRouteName='Temperatures'
       tabStyle={styles.tabStyle}
       withGradient
+      gradient={theme.app.mainGradient}
     >
       <Screen
         name='Temperatures'

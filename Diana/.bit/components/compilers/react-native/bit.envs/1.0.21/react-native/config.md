@@ -1,0 +1,11 @@
+### Default Babel Configuration used
+
+```js
+{
+  "presets": ["module:metro-react-native-babel-preset"],
+  "sourceMaps": true,
+  "ast": false,
+  "minified": false
+}
+
+```

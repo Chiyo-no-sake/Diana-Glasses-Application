@@ -5,7 +5,7 @@ import Defs from './SvgGradientDefs';
 export default {
   app: {
     mainGradient: gradients.Firewatch,
-    mainColor: '',
+    mainColor: 'rgba(252,71,57,1)',
     tabIconsColor: '#FFF',
     tabTextColor: '#FFF',
     plusIconColor: '#FFF',
@@ -15,7 +15,10 @@ export default {
     temperature: {
       lineColor: colors.GREY,
       labelsColor: colors.GREY,
+      buttonsColor: colors.LIGHTGREY,
       gradientsDefs: Defs,
+      selectedViewBgGradient: gradients.Firewatch,
+      selectedViewBGGradientDimmed: gradients.FirewatchTransparent,
     },
   },
 };
