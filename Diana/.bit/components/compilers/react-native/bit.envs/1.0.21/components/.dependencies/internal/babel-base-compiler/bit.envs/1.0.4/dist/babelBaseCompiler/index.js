@@ -22,7 +22,9 @@ var _getBabelOptions = require('../getBabelOptions');
 
 var _getBabelOptions2 = _interopRequireDefault(_getBabelOptions);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {default: obj};
+}
 
 var _getDistFile = function _getDistFile(file, distPath, content) {
     var distFile = file.clone();
@@ -79,7 +81,8 @@ var baseCompile = function baseCompile(files, distPath, compilerPath, compiledFi
     });
 
     // Compiler returns compiled AND non compiled dist files together
-    return compiled.concat(nonCompiled);;
+    return compiled.concat(nonCompiled);
+    ;
 };
 
 exports.default = baseCompile;

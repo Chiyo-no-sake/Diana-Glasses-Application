@@ -17,7 +17,7 @@ const moduleIsAvailable = (modulePath, compilerNodeModules) => {
 
 const addBabelPrefixAndResolve = (prefixType, obj, compilerRootFolder) => {
     const compilerNodeModules = path.join(compilerRootFolder, 'node_modules');
-    if(obj.startsWith('module:')) {
+    if (obj.startsWith('module:')) {
         obj = obj.substring(7);
     }
     const resolvedModule = moduleIsAvailable(obj, compilerNodeModules);
@@ -37,7 +37,7 @@ const addBabelPrefixAndResolve = (prefixType, obj, compilerRootFolder) => {
 /**
  * @name getBabelOptions
  * @description Retrieves the babel options from the `.babelrc` file as JSON  from the specified directory.
- * @param {string} pathToLook 
+ * @param {string} pathToLook
  * @example
  * const babelOptions = getBabelOptions();
  * babel.transform(code, babelOptions, distPath);
@@ -46,24 +46,24 @@ const getBabelOptions = (pathToLook) => {
     const options = getBabelRc(pathToLook);
     options.sourceMaps = true;
 
-    if(options.plugins) {
+    if (options.plugins) {
         options.plugins = options.plugins.map(plugin => {
             if (Array.isArray(plugin)) {
                 plugin[0] = addBabelPrefixAndResolve('plugin', plugin[0], pathToLook);
                 return plugin;
             }
-    
+
             return addBabelPrefixAndResolve('plugin', plugin, pathToLook);
         });
     }
 
-    if(options.presets) {
+    if (options.presets) {
         options.presets = options.presets.map(preset => {
             if (Array.isArray(preset)) {
                 preset[0] = addBabelPrefixAndResolve('preset', preset[0], pathToLook);
                 return preset;
             }
-    
+
             return addBabelPrefixAndResolve('preset', preset, pathToLook);
         });
     }

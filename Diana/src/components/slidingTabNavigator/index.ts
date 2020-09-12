@@ -1,3 +1,4 @@
-import SlidingTabNavigator, { Screen } from './SlidingTabNavigator';
+import SlidingTabNavigator, {Screen} from './SlidingTabNavigator';
+
 export default SlidingTabNavigator;
-export { Screen };
+export {Screen};

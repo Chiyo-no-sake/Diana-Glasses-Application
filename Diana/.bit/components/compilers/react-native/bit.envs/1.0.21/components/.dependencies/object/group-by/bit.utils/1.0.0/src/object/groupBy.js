@@ -11,16 +11,16 @@ import hasOwnProperty from './hasOwnProperty';
  * @param {*} value The value to assign.
  */
 function baseAssignValue(object, key, value) {
-  if (key == '__proto__') {
-    Object.defineProperty(object, key, {
-      'configurable': true,
-      'enumerable': true,
-      'value': value,
-      'writable': true
-    })
-  } else {
-    object[key] = value
-  }
+    if (key == '__proto__') {
+        Object.defineProperty(object, key, {
+            'configurable': true,
+            'enumerable': true,
+            'value': value,
+            'writable': true
+        })
+    } else {
+        object[key] = value
+    }
 }
 
 /**
@@ -39,14 +39,14 @@ function baseAssignValue(object, key, value) {
  * // => { '4': [4.2], '6': [6.1, 6.3] }
  */
 export default function groupBy(collection, iteratee) {
-  return collection.reduce((result, value, key) => {
-    key = iteratee(value)
-    if (hasOwnProperty(result, key)) {
-      result[key].push(value)
-    } else {
-      baseAssignValue(result, key, [value])
-    }
+    return collection.reduce((result, value, key) => {
+        key = iteratee(value)
+        if (hasOwnProperty(result, key)) {
+            result[key].push(value)
+        } else {
+            baseAssignValue(result, key, [value])
+        }
 
-    return result
-  }, {});
+        return result
+    }, {});
 }

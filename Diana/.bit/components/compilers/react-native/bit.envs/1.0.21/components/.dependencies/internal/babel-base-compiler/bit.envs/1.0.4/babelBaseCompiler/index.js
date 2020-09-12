@@ -1,6 +1,4 @@
-import {
-    transform
-} from '@babel/core';
+import {transform} from '@babel/core';
 import Vinyl from 'vinyl';
 import path from 'path';
 import groupBy from '@bit/bit.utils.object.group-by';
@@ -62,7 +60,8 @@ const baseCompile = (files, distPath, compilerPath, compiledFileTypes) => {
         filesByToCompile.false.map(file => _getDistFile(file, distPath));
 
     // Compiler returns compiled AND non compiled dist files together
-    return compiled.concat(nonCompiled);;
+    return compiled.concat(nonCompiled);
+    ;
 }
 
 export default baseCompile;

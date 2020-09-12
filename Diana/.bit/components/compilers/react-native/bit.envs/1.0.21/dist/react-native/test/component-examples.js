@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 exports.InputComponent = exports.CardComponent = exports.NormalButtonComponent = void 0;
 const NormalButtonComponent = `
 import React, { Component } from 'react';
@@ -91,7 +91,7 @@ class Card extends Component {
   UNSAFE_componentWillMount() {
     const hiddenValue = this.props.hidden ? 180 : 0;
     this.animatedValue = new Animated.Value(hiddenValue);
-    this.value = hiddenValue;
+    this.defaultValue = hiddenValue;
     this.animatedValue.addListener(({ value }) => {
       this.value = value;
     });

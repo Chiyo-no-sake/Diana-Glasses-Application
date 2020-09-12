@@ -1,2 +1,3 @@
-import { createWorkspace } from '@bit/bit.envs.common.create-workspace';
-export { createWorkspace };
+import {createWorkspace} from '@bit/bit.envs.common.create-workspace';
+
+export {createWorkspace};

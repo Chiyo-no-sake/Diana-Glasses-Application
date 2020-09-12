@@ -12,7 +12,9 @@ var _path = require('path');
 
 var _path2 = _interopRequireDefault(_path);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {default: obj};
+}
 
 var getBabelRc = function getBabelRc(pathToLook) {
     var babelRcPath = '' + pathToLook + _path2.default.sep + '.babelrc';
@@ -22,7 +24,7 @@ var getBabelRc = function getBabelRc(pathToLook) {
 
 var moduleIsAvailable = function moduleIsAvailable(modulePath, compilerNodeModules) {
     try {
-        return require.resolve(modulePath, { paths: [compilerNodeModules] });
+        return require.resolve(modulePath, {paths: [compilerNodeModules]});
     } catch (e) {
         return null;
     }
@@ -44,13 +46,13 @@ var addBabelPrefixAndResolve = function addBabelPrefixAndResolve(prefixType, obj
     } else if (!obj.startsWith('babel-' + prefixType)) {
         obj = 'babel-' + prefixType + '-' + obj;
     }
-    return require.resolve(obj, { paths: [compilerNodeModules] });
+    return require.resolve(obj, {paths: [compilerNodeModules]});
 };
 
 /**
  * @name getBabelOptions
  * @description Retrieves the babel options from the `.babelrc` file as JSON  from the specified directory.
- * @param {string} pathToLook 
+ * @param {string} pathToLook
  * @example
  * const babelOptions = getBabelOptions();
  * babel.transform(code, babelOptions, distPath);

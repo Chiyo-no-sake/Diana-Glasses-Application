@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 const chai_1 = require("chai");
 const build_component_1 = require("../src/build-component");
 describe('build component functions', function () {

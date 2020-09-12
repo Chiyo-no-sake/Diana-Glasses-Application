@@ -6,9 +6,9 @@ import Vinyl from 'vinyl';
 const compiledFileTypes = ['js', 'jsx'];
 
 const compile = (files: Vinyl[], distPath: string): void => {
-  return baseCompile(files, distPath, __dirname, compiledFileTypes);
+	return baseCompile(files, distPath, __dirname, compiledFileTypes);
 };
 
 export default {
-  compile,
+	compile,
 };

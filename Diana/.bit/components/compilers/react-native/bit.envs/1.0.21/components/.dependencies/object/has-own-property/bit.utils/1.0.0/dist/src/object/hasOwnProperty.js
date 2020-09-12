@@ -1,7 +1,7 @@
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 exports.default = hasOwnProperty;
 
@@ -17,7 +17,7 @@ exports.default = hasOwnProperty;
  *  hasOwnProperty({foo: 'bar'}, 'bar') // => false
  */
 function hasOwnProperty(obj, prop) {
-  return Object.prototype.hasOwnProperty.call(obj, prop);
+    return Object.prototype.hasOwnProperty.call(obj, prop);
 };
 module.exports = exports["default"];
 

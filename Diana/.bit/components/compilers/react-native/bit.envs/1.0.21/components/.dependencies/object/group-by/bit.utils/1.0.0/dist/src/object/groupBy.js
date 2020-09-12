@@ -1,7 +1,7 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 exports.default = groupBy;
 
@@ -9,7 +9,9 @@ var _hasOwnProperty = require('./hasOwnProperty');
 
 var _hasOwnProperty2 = _interopRequireDefault(_hasOwnProperty);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {default: obj};
+}
 
 /**
  * The base implementation of `assignValue` and `assignMergeValue` without
@@ -22,16 +24,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @param {*} value The value to assign.
  */
 function baseAssignValue(object, key, value) {
-  if (key == '__proto__') {
-    Object.defineProperty(object, key, {
-      'configurable': true,
-      'enumerable': true,
-      'value': value,
-      'writable': true
-    });
-  } else {
-    object[key] = value;
-  }
+    if (key == '__proto__') {
+        Object.defineProperty(object, key, {
+            'configurable': true,
+            'enumerable': true,
+            'value': value,
+            'writable': true
+        });
+    } else {
+        object[key] = value;
+    }
 }
 
 /**
@@ -50,17 +52,18 @@ function baseAssignValue(object, key, value) {
  * // => { '4': [4.2], '6': [6.1, 6.3] }
  */
 function groupBy(collection, iteratee) {
-  return collection.reduce(function (result, value, key) {
-    key = iteratee(value);
-    if ((0, _hasOwnProperty2.default)(result, key)) {
-      result[key].push(value);
-    } else {
-      baseAssignValue(result, key, [value]);
-    }
+    return collection.reduce(function (result, value, key) {
+        key = iteratee(value);
+        if ((0, _hasOwnProperty2.default)(result, key)) {
+            result[key].push(value);
+        } else {
+            baseAssignValue(result, key, [value]);
+        }
 
-    return result;
-  }, {});
+        return result;
+    }, {});
 }
+
 module.exports = exports['default'];
 
 //# sourceMappingURL=groupBy.js.map

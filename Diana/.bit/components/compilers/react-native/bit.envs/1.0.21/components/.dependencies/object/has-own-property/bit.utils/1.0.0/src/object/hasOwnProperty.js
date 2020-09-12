@@ -11,5 +11,5 @@
  *  hasOwnProperty({foo: 'bar'}, 'bar') // => false
  */
 export default function hasOwnProperty(obj: {}, prop: string|number): boolean {
-  return Object.prototype.hasOwnProperty.call(obj, prop);
+    return Object.prototype.hasOwnProperty.call(obj, prop);
 };

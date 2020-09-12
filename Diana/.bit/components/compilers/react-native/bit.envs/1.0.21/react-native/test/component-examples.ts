@@ -88,7 +88,7 @@ class Card extends Component {
   UNSAFE_componentWillMount() {
     const hiddenValue = this.props.hidden ? 180 : 0;
     this.animatedValue = new Animated.Value(hiddenValue);
-    this.value = hiddenValue;
+    this.defaultValue = hiddenValue;
     this.animatedValue.addListener(({ value }) => {
       this.value = value;
     });
@@ -433,4 +433,4 @@ const styles = {
 export { Input };
 export default withTheme(Input, 'Input');
 `;
-export { NormalButtonComponent, CardComponent, InputComponent };
+export {NormalButtonComponent, CardComponent, InputComponent};

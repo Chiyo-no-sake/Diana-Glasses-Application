@@ -1,22 +1,45 @@
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    function adopt(value) {
+        return value instanceof P ? value : new P(function (resolve) {
+            resolve(value);
+        });
+    }
+
     return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        function fulfilled(value) {
+            try {
+                step(generator.next(value));
+            } catch (e) {
+                reject(e);
+            }
+        }
+
+        function rejected(value) {
+            try {
+                step(generator["throw"](value));
+            } catch (e) {
+                reject(e);
+            }
+        }
+
+        function step(result) {
+            result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+        }
+
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
 var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
+    return (mod && mod.__esModule) ? mod : {"default": mod};
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 exports.createWorkspace = void 0;
 const fs_1 = require("fs");
 const mkdirp_1 = __importDefault(require("mkdirp"));
 const path_1 = __importDefault(require("path"));
 const get_capsule_name_1 = require("./get-capsule-name");
+
 function createWorkspace(content, options) {
     return __awaiter(this, void 0, void 0, function* () {
         const targetDir = get_capsule_name_1.getCapsuleName('space');
@@ -25,12 +48,15 @@ function createWorkspace(content, options) {
         return targetDir;
     });
 }
+
 exports.createWorkspace = createWorkspace;
+
 function mkdirPromise(dir, opts) {
     return new Promise((resolve, reject) => {
         mkdirp_1.default(dir, opts, (err, made) => (err === null ? resolve(made) : reject(err)));
     });
 }
+
 function createFS(targetDir, content) {
     return __awaiter(this, void 0, void 0, function* () {
         yield mkdirPromise(targetDir, {});
@@ -43,6 +69,7 @@ function createFS(targetDir, content) {
         })));
     });
 }
+
 function enrichContentWithDefaults(content, options) {
     const packageJSON = Object.assign({
         name: options.name,

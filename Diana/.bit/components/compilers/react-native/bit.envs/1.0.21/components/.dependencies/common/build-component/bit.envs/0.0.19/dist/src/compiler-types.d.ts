@@ -1,2 +1,3 @@
-import { GenericObject } from '@bit/bit.envs.common.compiler-types';
-export { GenericObject };
+import {GenericObject} from '@bit/bit.envs.common.compiler-types';
+
+export {GenericObject};
