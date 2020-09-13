@@ -1,5 +1,5 @@
 import React from 'react';
-import {LinearGradient} from 'expo-linear-gradient';
+import LinearGradient from 'react-native-linear-gradient';
 import {StyleProp, ViewStyle} from 'react-native';
 
 // HOC function: a function that takes in a component<P> where P is the

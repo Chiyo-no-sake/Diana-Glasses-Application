@@ -1,6 +1,6 @@
 import React, {RefObject} from 'react';
 import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
-import {LinearGradient} from 'expo-linear-gradient';
+import LinearGradient from 'react-native-linear-gradient';
 
 type Props = {
 	children?: React.ReactNode;

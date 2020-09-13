@@ -92,7 +92,7 @@ const SlidingTabIcon = (props: Props) => {
 				style={[
 					styles.iconContainerStyle,
 					props.iconContainerStyle,
-					{transform: [{scale: animScale, translateY: animYDelta}]},
+					{transform: [{scale: animScale}, {translateY: animYDelta}]},
 				]}
 			>
 				{toRender}

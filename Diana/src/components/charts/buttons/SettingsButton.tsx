@@ -1,7 +1,7 @@
 import React from 'react';
-import {LinearGradient} from "expo-linear-gradient";
+import LinearGradient from "react-native-linear-gradient";
 import theme from "../../../../styles/theme";
-import {Octicons} from "@expo/vector-icons";
+import Octicons from "react-native-vector-icons/Octicons";
 import {StyleSheet, TouchableOpacity} from "react-native";
 
 type Props = {

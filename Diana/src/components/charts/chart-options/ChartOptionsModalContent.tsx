@@ -1,6 +1,6 @@
 import React, {useContext} from "react";
 import {StyleSheet, Text, View} from "react-native";
-import {FontAwesome} from '@expo/vector-icons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import PickOption from './PickOption';
 import theme from '../../../../styles/theme';
 import Spacer from '../../../components/misc/Spacer';
